@@ -2,7 +2,6 @@
 
 # VPC
 provider "google" {
-  version = "3.5.0"
   credentials = file("/downloads/instance.json")
   project = ""
   region  = "us-central1"
