@@ -3,7 +3,7 @@
 # VPC
 provider "google" {
   credentials = file("/downloads/instance.json")
-  project = ""
+  project = "playground-s-11-98574d2b"
   region  = "us-central1"
   zone    = "us-central1-c"
 }
