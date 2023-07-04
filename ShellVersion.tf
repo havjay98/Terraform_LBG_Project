@@ -5,8 +5,9 @@
 # Configure the Google Cloud provider
 provider "google" {
   credentials = file("path/to/your/keyfile.json")
-  project     = "your-project-id"
+  project     = "playground-s-11-98574d2b"
   region      = "us-central1"
+  zone        = "us-central1-c"
 }
 
  
