@@ -22,7 +22,7 @@ resource "google_storage_bucket" "private_bucket" {
 
   lifecycle_rule {
     condition {
-      age = 30 # Retain objects for 30 days
+      age = 30 # This will keep objects in the bucket for 30 days before deleting 
     }
     action {
       type = "Delete"
