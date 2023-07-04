@@ -14,7 +14,7 @@ provider "google" {
 
 # Create a Google Cloud Storage bucket
 resource "google_storage_bucket" "private_bucket" {
-  name          = "my-private-bucket"
+  name          = "Lloyds-challenge-bucket01"
   location      = "us-central1"
   storage_class = "STANDARD"
 
