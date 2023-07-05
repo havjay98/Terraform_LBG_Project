@@ -18,7 +18,7 @@ retention_policy {
 
 
 # A user managed vertex AI Notebook
-# All environments use JupyterLab 3 by default and have latest Nvidia GPU and Intel libraries and drivers installed.
+# All environments use JupyterLab 3 by default and have latest Nvidia GPU and Intel libraries and drivers installed. In Sandbox Notebooks API must be enabled first.
 
 resource "google_notebooks_instance" "basic" {
  	name = ""
