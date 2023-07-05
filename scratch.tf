@@ -3,7 +3,7 @@
 resource "google_storage_bucket" "private" {
 	count = 1
 	name = ""
-	public_access_prevention = "enforced"
+	public_access_prevention = "enforced"  #This is what makes the bucket private.
 location = "US" 
 	storage_class = "STANDARD"
 
