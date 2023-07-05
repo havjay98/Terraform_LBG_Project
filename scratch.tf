@@ -24,10 +24,10 @@ resource "google_notebooks_instance" "basic" {
  	name = ""
   	region = "us-central1"
 	zone = "us-central1-a"
-  	machine_type = "e2-medium"
+  	machine_type = "e2-standard-2" # E2 for general purpose day-to-day computing at lower cost.
   vm_image {
     	project      = ""
-    	image_family = "tf-latest-cpu"
+    	image_family = "tf-latest-cpu" # TensorFlow latest CPU
   	}
 }
 
