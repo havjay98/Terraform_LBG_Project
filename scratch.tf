@@ -15,4 +15,7 @@ retention_period = 3000000 # objects in the bucket can only be deleted or replac
 }
 
 
+# A user managed vertex AI Notebook
+
+
  
