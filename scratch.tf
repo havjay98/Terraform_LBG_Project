@@ -4,7 +4,7 @@ resource "google_storage_bucket" "private" {
 	count = 1
 	name = ""
 	public_access_prevention = "enforced"  #This is what makes the bucket private.
-location = "US" 
+	location = "US" 
 	storage_class = "STANDARD"
 
 uniform_bucket_level_access = true   #object access determined by bucket permissions.
