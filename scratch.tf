@@ -21,7 +21,7 @@ count         = 1
 name          = ""
  location      = "europe-west2"
  storage_class = "REGIONAL"
-}
+
  uniform_bucket_level_access = true   #object access determined by bucket permissions.
   
 retention_policy {
