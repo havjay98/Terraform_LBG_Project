@@ -36,7 +36,7 @@ resource "google_notebooks_instance" "basic" {
 # A BigQuery dataset (empty or with sample data) which includes a configured optimisation that could speed up queries
 
 resource "google_bigquery_dataset" "empty_dataset" {
-  dataset_id = "<DATASET_ID>"
+  dataset_id = ""
   project   = ""
 
   labels = {
