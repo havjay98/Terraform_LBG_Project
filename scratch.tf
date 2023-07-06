@@ -32,3 +32,4 @@ resource "google_notebooks_instance" "basic" {
 
 
  
+# A BigQuery dataset (empty or with sample data) which includes a configured optimisation that could speed up queries
