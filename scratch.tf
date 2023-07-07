@@ -1,5 +1,6 @@
-# VPC
-
+# VPC Network
+resource "google_compute_network" "vpc_network" {
+	name = "terraform-network"
 
 
 # A private Google cloud storage bucket with a retention policy
