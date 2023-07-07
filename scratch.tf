@@ -1,6 +1,8 @@
 # VPC Network
-resource "google_compute_network" "vpc_network" {
-	name = "terraform-network"
+resource "google_compute_network" "temp_vpc_network" {
+	name = "temp-terraform-network"
+	auto_create_subnetworks = true
+	
 
 
 # A private Google cloud storage bucket with a retention policy
@@ -39,13 +41,13 @@ resource "google_notebooks_instance" "basic" {
  
 # A BigQuery dataset (empty or with sample data) which includes a configured optimisation that could speed up queries
 
-resource "google_bigquery_dataset" "empty_dataset" {
+resource "google_bigquery_dataset" "dataset" {
   dataset_id = ""
-  project   = ""
+  friendly_name = ""  
+  location = "US"
+  default_table_expiration_ms = 3600000  # 1 hour minimum value. Default lifetime of all tables in dataset.
 
   labels = {
     "priority" = "interactive"
-  }
-
-  default_table_expiration_ms = 86400000  # Optional: Set default table expiration time (in milliseconds)
+  }  
 }
