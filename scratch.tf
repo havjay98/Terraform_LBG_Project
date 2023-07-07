@@ -15,7 +15,7 @@ resource "google_storage_bucket" "private" {
 uniform_bucket_level_access = true   #object access determined by bucket permissions.
   
 retention_policy {
-	retention_period = 300 # objects in the bucket can only be deleted or replaced once the age is greater than 5 minutes.
+	retention_period = 2678400 # objects in the bucket can only be deleted or replaced once the age is greater than 31 days.
   }
 }
 
