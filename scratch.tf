@@ -2,7 +2,7 @@
 resource "google_compute_network" "temp_vpc_network" {
 	name = "temp-terraform-network"
 	auto_create_subnetworks = true
-	
+}	
 
 
 # A private Google cloud storage bucket with a retention policy
@@ -42,14 +42,18 @@ resource "google_notebooks_instance" "basic" {
 # A BigQuery dataset (empty or with sample data) which includes a configured optimisation that could speed up queries
 
 resource "google_bigquery_dataset" "temp_dataset" { 
-  location = "US"
-  default_table_expiration_ms = 3600000  # 1 hour minimum value. Default lifetime of all tables in dataset
+  	dataset_id = "temp_dataset1"
+	location = "US"
+  	default_table_expiration_ms = 3600000  # 1 hour minimum value. Default lifetime of all tables in dataset
 }
 resource "google_bigquery_table" "temp_table_tf" {
-	tabled_id = "temptabletf"
-	dataset_id = "google_bigquery_dataset.temp_dataset.dataset_id
+	table_id = "temptablet1"
+	dataset_id = "temp_dataset1"
+	location = "US" 
+	deletion_protection = "false" # allows deletion
 
   labels = {
     "priority" = "interactive"
+# default_table_expiration_ms = 3600000  # 1 hour minimum value. Default lifetime of all tables in dataset
   }  
 }
