@@ -41,11 +41,13 @@ resource "google_notebooks_instance" "basic" {
  
 # A BigQuery dataset (empty or with sample data) which includes a configured optimisation that could speed up queries
 
-resource "google_bigquery_dataset" "dataset" {
-  dataset_id = ""
-  friendly_name = ""  
+resource "google_bigquery_dataset" "temp_dataset" { 
   location = "US"
-  default_table_expiration_ms = 3600000  # 1 hour minimum value. Default lifetime of all tables in dataset.
+  default_table_expiration_ms = 3600000  # 1 hour minimum value. Default lifetime of all tables in dataset
+}
+resource "google_bigquery_table" "temp_table_tf" {
+	tabled_id = "temptabletf"
+	dataset_id = "google_bigquery_dataset.temp_dataset.dataset_id
 
   labels = {
     "priority" = "interactive"
