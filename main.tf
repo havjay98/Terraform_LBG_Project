@@ -49,7 +49,6 @@ resource "google_bigquery_dataset" "temp_dataset" {
 resource "google_bigquery_table" "temp_table_tf" {
 	table_id = "temptablet1"
 	dataset_id = "temp_dataset1"
-	location = "US" 
 	deletion_protection = "false" # allows deletion
 
   labels = {
