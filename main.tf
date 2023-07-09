@@ -45,12 +45,12 @@ resource "google_bigquery_dataset" "temp_dataset" {
   	dataset_id = "temp_dataset1"
 	location = "US"
   	default_table_expiration_ms = 3600000  # 1 hour minimum value. Default lifetime of all tables in dataset
-}
+
 
 labels = {
     env = "default"
   }
-
+}
 resource "google_bigquery_table" "temp_table_tf" {
 	table_id = "temptablet1"
 	dataset_id = "temp_dataset1"
