@@ -50,11 +50,10 @@ resource "google_bigquery_dataset" "temp_dataset" {
 labels = {
     env = "default"
   }
-}
 
 resource "google_bigquery_table" "temp_table_tf" {
 	table_id = "temptablet1"
 	dataset_id = "temp_dataset1"
 	deletion_protection = "false" # allows deletion
   }  
-}
+
