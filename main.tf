@@ -24,21 +24,32 @@ retention_policy {
 
 
 # A user managed vertex AI Notebook
-# All environments use JupyterLab 3 by default and have latest Nvidia GPU and Intel libraries and drivers installed. In Sandbox Notebooks API must be enabled first.
 
-resource "google_notebooks_instance" "basic" {
- 	name = ""
-  	location = "us-central1-a"
-  	machine_type = "e2-standard-2" # E2 for general purpose day-to-day computing at lower cost.
-  vm_image {
-    	project      = ""
-    	image_family = "tf-ent-latest-cpu" # TensorFlow latest CPU.
-  	}
+resource "google_project_service" "notebooks" {
+	provider           = google
+	service            = "notebooks.googleapis.com"
+	disable_on_destroy = false
+}
+
+resource "google_notebooks_instance" "basic_instance" {
+	project      = ""
+	name         = ""
+	provider     = google
+	location     = "us-central1-c"
+	machine_type = "e2-medium"
+
+vm_image {
+	project      = ""
+	image_family = "tf-ent-2-9-cu113-notebooks"
+  }
+	
+depends_on = [
+	 google_project_service.notebooks
+ ]
 }
 
 
 
- 
 # A BigQuery dataset (empty or with sample data) which includes a configured optimisation that could speed up queries
 
 resource "google_bigquery_dataset" "temp_dataset" { 
