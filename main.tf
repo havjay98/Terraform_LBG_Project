@@ -1,3 +1,9 @@
+provider "google" {
+  credentials = file("<path_to_service_account_json>")
+  project     = "<your_project_id>"
+  region      = "us-central1"
+}
+
 # VPC Network
 resource "google_compute_network" "temp_vpc_network" {
 	name = "temp-terraform-network"
@@ -38,6 +44,12 @@ resource "google_notebooks_instance" "basic_instance" {
 	provider     = google
 	location     = "us-central1-c"
 	machine_type = "e2-medium"
+	container_image = "gcr.io/deeplearning-platform-release/base-cpu:latest"
+
+boot_disk_size_gb = 100
+ 
+metadata = {
+    "proxy-mode" = "service_account"
 
 vm_image {
 	project      = ""
