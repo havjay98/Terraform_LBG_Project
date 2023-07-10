@@ -9,7 +9,7 @@ resource "google_compute_network" "temp_vpc_network" {
 resource "google_storage_bucket" "private" {
 	name = "temp-terraform-bucket"
 	public_access_prevention = "enforced"  #This is what makes the bucket private.
-	location = "US" 
+	location = "EU" 
 	storage_class = "STANDARD"
 	uniform_bucket_level_access = true   #object access determined by bucket permissions.
   
@@ -24,24 +24,14 @@ retention_policy {
 
 resource "google_bigquery_dataset" "dataset" { 
   	dataset_id = "tempterraformdataset1"
-	location = "US"
-  	default_table_expiration_ms = 3600000  # 1 hour minimum value. Default lifetime of all tables in dataset
-labels = {
-    env = "default"
-  }
-access {
-	role = "OWNER"
-	user_by_email = google_service_account.bqowner.email
+	default_table_expiration_ms = 3600000  # 1 hour minimum value. Default lifetime of all tables in dataset
   }
 }
 
 resource "google_bigquery_table" "table1" {
-	dataset_id = "tempterraformdataset1"
-	table_id = "temp-terraform-table1"
+	table_id = "temp-terraform-table1"	
+	dataset_id = tempterraformdataset1.dataset
 	deletion_protection = "false" # allows deletion
-labels = {
-    env = "default"
-  }  
 }
 
 
