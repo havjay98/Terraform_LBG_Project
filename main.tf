@@ -43,7 +43,7 @@ resource "google_notebooks_instance" "basic_instance" {
 boot_disk_size_gb = 100
  
 metadata = {
-    "proxy-mode" = "service_account"
+    "proxy-mode" = ""
 
 vm_image {
 	project      = ""
