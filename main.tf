@@ -31,6 +31,7 @@ resource "google_project_service" "notebooks" {
 	disable_on_destroy = false
 }
 
+
 resource "google_notebooks_instance" "basic_instance" {
 	project      = ""
 	name         = ""
