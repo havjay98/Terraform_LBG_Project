@@ -9,6 +9,6 @@ terraform {
 
 provider "google" {
   project = ""
-  region = "US-central1-a"
+  region = "EUROPE-WEST2"
   credentials = "${file("filename.json")}"
 }
