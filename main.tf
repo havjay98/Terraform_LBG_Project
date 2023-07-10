@@ -30,7 +30,7 @@ resource "google_bigquery_dataset" "dataset" {
 
 resource "google_bigquery_table" "table1" {
 	table_id = "temp-terraform-table1"	
-	dataset_id = tempterraformdataset1.dataset
+	dataset_id = google_bigquery_dataset.dataset
 	deletion_protection = "false" # allows deletion
 }
 
