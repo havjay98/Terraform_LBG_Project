@@ -1,9 +1,3 @@
-provider "google" {
-  credentials = file("<path_to_service_account_json>")
-  project     = "<your_project_id>"
-  region      = "us-central1"
-}
-
 # VPC Network
 resource "google_compute_network" "temp_vpc_network" {
 	name = "temp-terraform-network"
