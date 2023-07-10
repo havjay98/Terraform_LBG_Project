@@ -22,15 +22,15 @@ retention_policy {
 
 # A BigQuery dataset (empty or with sample data) which includes a configured optimisation that could speed up queries
 
-resource "google_bigquery_dataset" "dataset" { 
-  	dataset_id = "tempterraformdataset1"
+resource "google_bigquery_dataset" "tf_ds" { 
+  	dataset_id = "tfds1"
 	default_table_expiration_ms = 3600000  # 1 hour minimum value. Default lifetime of all tables in dataset
   }
 }
 
-resource "google_bigquery_table" "table1" {
-	table_id = "temp-terraform-table1"	
-	dataset_id = google_bigquery_dataset.dataset
+resource "google_bigquery_table" "tf_tb" {
+	table_id = "tftb1"	
+	dataset_id = google_bigquery_dataset.tf_ds.dataset_id
 	deletion_protection = "false" # allows deletion
 }
 
