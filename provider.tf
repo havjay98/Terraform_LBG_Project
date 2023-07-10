@@ -1,14 +1,5 @@
-terraform {
-  required_providers {
-  google = {   
-  source = "hashicorp/google"
-    version = "~> 1.5.2"
-    }
-  }
-}
-
 provider "google" {
   project = ""
-  region = "EUROPE-WEST2"
-  credentials = "${file("filename.json")}"
+  region = "europe-west2-a"
+  credentials = "${file("project-filename.json")}"
 }
