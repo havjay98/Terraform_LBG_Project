@@ -6,20 +6,45 @@ resource "google_compute_network" "temp_vpc_network" {
 
 
 # A private Google cloud storage bucket with a retention policy
-
 resource "google_storage_bucket" "private" {
-	count = 1
-	name = ""
+	name = "temp-terraform-bucket"
 	public_access_prevention = "enforced"  #This is what makes the bucket private.
 	location = "US" 
 	storage_class = "STANDARD"
-
-uniform_bucket_level_access = true   #object access determined by bucket permissions.
+	uniform_bucket_level_access = true   #object access determined by bucket permissions.
   
 retention_policy {
 	retention_period = 2678400 # objects in the bucket can only be deleted or replaced once the age is greater than 31 days.
   }
 }
+
+
+
+# A BigQuery dataset (empty or with sample data) which includes a configured optimisation that could speed up queries
+
+resource "google_bigquery_dataset" "dataset" { 
+  	dataset_id = "temp-terraform-dataset1"
+	location = "US"
+  	default_table_expiration_ms = 3600000  # 1 hour minimum value. Default lifetime of all tables in dataset
+labels = {
+    env = "default"
+  }
+access {
+	role = "OWNER"
+	user_by_email = google_service_account.bqowner.email
+  }
+}
+
+resource "google_bigquery_table" "table1" {
+	dataset_id = "temp-terraform-dataset1"
+	table_id = "temp-terraform-table1"
+	deletion_protection = "false" # allows deletion
+labels = {
+    env = "default"
+  }  
+}
+
+
 
 
 
@@ -54,24 +79,3 @@ depends_on = [
 	 google_project_service.notebooks
  ]
 }
-
-
-
-# A BigQuery dataset (empty or with sample data) which includes a configured optimisation that could speed up queries
-
-resource "google_bigquery_dataset" "temp_dataset" { 
-  	dataset_id = "temp_dataset1"
-	location = "US"
-  	default_table_expiration_ms = 3600000  # 1 hour minimum value. Default lifetime of all tables in dataset
-
-
-labels = {
-    env = "default"
-  }
-}
-resource "google_bigquery_table" "temp_table_tf" {
-	table_id = "temptablet1"
-	dataset_id = "temp_dataset1"
-	deletion_protection = "false" # allows deletion
-  }  
-
