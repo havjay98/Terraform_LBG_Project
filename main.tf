@@ -13,7 +13,7 @@ provider "google" {
  zone =" "europe-west2a"
   }
 
-#private GCP storage bucket with a retention policy
+#private google storage bucket with a retention policy
 resource "google_storage_bucket" "private" {
  name = "numatf-bucket"
  public_access_prevention = "enforced"  #privatize
@@ -28,16 +28,27 @@ resource "google_storage_bucket" "private" {
 
 
 
-# BigQuery dataset with sample data which optimises query performance
+# bigquery dataset with sample data which optimises query performance
 resource "google_bigquery_dataset" "tf_ds" { 
  dataset_id = "tfds1"
  }
 
 resource "google_bigquery_table" "tf_tb" {
-	table_id = "tftb1"	
-	dataset_id = google_bigquery_dataset.tf_ds.dataset_id
-	deletion_protection = "false" # allows deletion
+ table_id = "tftb1"	
+ dataset_id = google_bigquery_dataset.tf_ds.dataset_id
+ deletion_protection = "false" # allows deletion
 
+schema {
+ fields {
+ name = "column1"
+ type = "STRING"
+}
+fields {
+ name = "column2"
+  type = "INTEGER"
+   }
+  }
+}
 clustering {
 	
 	}
@@ -46,30 +57,27 @@ clustering {
 
 
 
-
-# A user managed vertex AI Notebook
-
+#google notebook instance
 resource "google_project_service" "notebooks" {
-	provider           = google
-	service            = "notebooks.googleapis.com"
-	disable_on_destroy = false
+ provider           = google
+ service            = "notebooks.googleapis.com"
+ disable_on_destroy = false
 }
 
 
 resource "google_notebooks_instance" "basic_instance" {
-	project      = "sichuwayproject"
-	name         = "tfnotebook"
-	provider     = google
-	location     = "europe-west2-a"
-	machine_type = "g1-small" # cheapest for demonstration purposes
+ project      = "sichuwayproject"
+ name         = "tfnotebook"
+ provider     = google
+ location     = "europe-west2-a"
+ machine_type = "g1-small" # cheapest for demonstration purposes
 	
-
-vm_image {
-	project      = "deeplearning-platform-release"  # public project by google for deep learning special machine images
-	image_family = "tf-ent-2-9-cu113-notebooks"
+ vm_image {
+  project      = "deeplearning-platform-release"  # public project by google for deep learning special machine images
+  image_family = "tf-ent-2-9-cu113-notebooks"
   }
 	
-depends_on = [
+ depends_on = [
 	 google_project_service.notebooks
  ]
 }
