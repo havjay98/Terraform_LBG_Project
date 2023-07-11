@@ -51,7 +51,7 @@ resource "google_notebooks_instance" "basic_instance" {
 	project      = ""
 	name         = ""
 	provider     = google
-	location     = "us-central1-c"
+	location     = "europe-west2-a"
 	machine_type = "e2-medium"
 	container_image = "gcr.io/deeplearning-platform-release/base-cpu:latest"
 
