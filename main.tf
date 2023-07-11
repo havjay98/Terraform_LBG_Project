@@ -53,12 +53,7 @@ resource "google_notebooks_instance" "basic_instance" {
 	provider     = google
 	location     = "europe-west2-a"
 	machine_type = "e2-medium"
-	container_image = "gcr.io/deeplearning-platform-release/base-cpu:latest"
-
-boot_disk_size_gb = 100
- 
-metadata = {
-    "proxy-mode" = ""
+	
 
 vm_image {
 	project      = ""
