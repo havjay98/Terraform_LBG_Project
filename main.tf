@@ -10,7 +10,7 @@ provider "google" {
  credentials = "${file("project-filename.json")}"  
  project = "sichuwayproject"
  region = "europe-west2"
- zone =" "europe-west2a"
+ zone = "europe-west2a"
   }
 
 #private google storage bucket with a retention policy
