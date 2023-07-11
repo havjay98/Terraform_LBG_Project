@@ -31,6 +31,10 @@ resource "google_bigquery_table" "tf_tb" {
 	table_id = "tftb1"	
 	dataset_id = google_bigquery_dataset.tf_ds.dataset_id
 	deletion_protection = "false" # allows deletion
+
+time_partitioning {
+	type = "DAY"
+	}
 }
 
 
