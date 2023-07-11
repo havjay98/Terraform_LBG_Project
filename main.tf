@@ -34,7 +34,7 @@ resource "google_bigquery_table" "tf_tb" {
 	deletion_protection = "false" # allows deletion
 
 clustering {
-	type = "DAY"
+	
 	}
 }
 
