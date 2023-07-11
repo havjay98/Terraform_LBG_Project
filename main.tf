@@ -7,7 +7,7 @@ resource "google_compute_network" "temp_vpc_network" {
 
 # A private Google cloud storage bucket with a retention policy
 resource "google_storage_bucket" "private" {
-	name = "temp-terraform-bucket"
+	name = "tf-temp-sichuway-bucket"
 	public_access_prevention = "enforced"  #This is what makes the bucket private.
 	location = "EU" 
 	storage_class = "STANDARD"
@@ -26,7 +26,6 @@ resource "google_bigquery_dataset" "tf_ds" {
   	dataset_id = "tfds1"
 	default_table_expiration_ms = 3600000  # 1 hour minimum value. Default lifetime of all tables in dataset
   }
-}
 
 resource "google_bigquery_table" "tf_tb" {
 	table_id = "tftb1"	
@@ -48,8 +47,8 @@ resource "google_project_service" "notebooks" {
 
 
 resource "google_notebooks_instance" "basic_instance" {
-	project      = ""
-	name         = ""
+	project      = "sichuwayproject"
+	name         = "tfnotebook"
 	provider     = google
 	location     = "europe-west2-a"
 	machine_type = "e2-medium"
