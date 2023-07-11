@@ -56,7 +56,7 @@ resource "google_notebooks_instance" "basic_instance" {
 	
 
 vm_image {
-	project      = "deeplearning-platform-release"
+	project      = "deeplearning-platform-release"  # public project by google for deep learning special machine images
 	image_family = "tf-ent-2-9-cu113-notebooks"
   }
 	
