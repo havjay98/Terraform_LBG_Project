@@ -38,21 +38,30 @@ resource "google_bigquery_table" "tf_tb" {
  dataset_id = google_bigquery_dataset.tf_ds.dataset_id
  deletion_protection = "false" # allows deletion
 
-schema {
- fields {
- name = "column1"
- type = "STRING"
-}
-fields {
- name = "column2"
-  type = "INTEGER"
-   }
+  labels = {
+    env = "default"
   }
+
+   schema = <<EOF
+[
+  {
+    "name": "permalink",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "The Permalink"
+  },
+  {
+    "name": "state",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "State where the head office is located"
+  }
+]
+EOF
 }
-clustering {
-	
-	}
-}
+
+#Need to get the Clustering involved somewhere above...
+
 
 
 
