@@ -1,8 +1,9 @@
-# VPC Network
-resource "google_compute_network" "temp_vpc_network" {
-	name = "temp-terraform-network"
-	auto_create_subnetworks = true
-}	
+provider "google" {
+  project = ""
+  region = "europe-west2-a"
+  credentials = "${file("project-filename.json")}"
+}
+
 
 
 # A private Google cloud storage bucket with a retention policy
