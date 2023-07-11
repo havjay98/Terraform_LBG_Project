@@ -33,7 +33,7 @@ resource "google_bigquery_table" "tf_tb" {
 	dataset_id = google_bigquery_dataset.tf_ds.dataset_id
 	deletion_protection = "false" # allows deletion
 
-time_partitioning {
+clustering {
 	type = "DAY"
 	}
 }
@@ -56,7 +56,7 @@ resource "google_notebooks_instance" "basic_instance" {
 	name         = "tfnotebook"
 	provider     = google
 	location     = "europe-west2-a"
-	machine_type = "e2-medium"
+	machine_type = "g1-small" # cheapest for demonstration purposes
 	
 
 vm_image {
