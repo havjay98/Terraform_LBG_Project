@@ -1,32 +1,37 @@
+#required terraform version
+
+terraform {
+    required_version = ">=0.13"
+}
+
+ 
+#provider block
 provider "google" {
-  project = ""
-  region = "europe-west2-a"
-  credentials = "${file("project-filename.json")}"
-}
+ credentials = "${file("project-filename.json")}"  
+ project = "sichuwayproject"
+ region = "europe-west2"
+ zone =" "europe-west2a"
+  }
 
-
-
-# A private Google cloud storage bucket with a retention policy
+#private GCP storage bucket with a retention policy
 resource "google_storage_bucket" "private" {
-	name = "tf-temp-sichuway-bucket"
-	public_access_prevention = "enforced"  #This is what makes the bucket private.
-	location = "EU" 
-	storage_class = "STANDARD"
-	uniform_bucket_level_access = true   #object access determined by bucket permissions.
+ name = "numatf-bucket"
+ public_access_prevention = "enforced"  #privatize
+ location = "EU" 
+ storage_class = "STANDARD"
+ uniform_bucket_level_access = true   #object access determined by bucket permissions.
   
-retention_policy {
-	retention_period = 2678400 # objects in the bucket can only be deleted or replaced once the age is greater than 31 days.
+ retention_policy {
+  retention_period = 30 # can delete after 30 seconds
   }
 }
 
 
 
-# A BigQuery dataset (empty or with sample data) which includes a configured optimisation that could speed up queries
-
+# BigQuery dataset with sample data which optimises query performance
 resource "google_bigquery_dataset" "tf_ds" { 
-  	dataset_id = "tfds1"
-	default_table_expiration_ms = 3600000  # 1 hour minimum value. Default lifetime of all tables in dataset
-  }
+ dataset_id = "tfds1"
+ }
 
 resource "google_bigquery_table" "tf_tb" {
 	table_id = "tftb1"	
