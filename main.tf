@@ -41,18 +41,17 @@ resource "google_bigquery_dataset" "tf_ds" {
 resource "google_bigquery_table" "tf_tb" {
  table_id = "tftb1"	
  dataset_id = google_bigquery_dataset.tf_ds.dataset_id
- location = "EU"
  deletion_protection = "false" # allows deletion
- clustering = "Tournament"
 
   labels = {
     env = "default"
   }
-
  external_data_configuration {   
     autodetect    = true
-    source_format = "CSV"
-
+    source_format = "CSV" 	
+ csv_options{
+	quote = "\"
+	skip_leading_rows = 1
     source_uris = [
       "gs://numatf-bucket/football_teams.csv",
     ]
