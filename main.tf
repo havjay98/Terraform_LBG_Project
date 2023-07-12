@@ -36,6 +36,7 @@ resource "google_storage_bucket_object" "footballdata" {
 # bigquery dataset with sample data which optimises query performance
 resource "google_bigquery_dataset" "tf_ds" { 
  dataset_id = "tfds1"
+ location = "EU"
  }
 
 resource "google_bigquery_table" "tf_tb" {
@@ -53,7 +54,7 @@ external_data_configuration {
     autodetect    = true
     source_format = "CSV" 	
  csv_options{
-	quote = "\"
+	quote = "\""
 	skip_leading_rows = 1
 }
     source_uris = [
