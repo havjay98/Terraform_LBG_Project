@@ -61,7 +61,10 @@ external_data_configuration {
       "gs://numatf-bucket/football_teams.csv",
      ]
    }
- }
+clustering {
+   fields = ["Tournament"]
+  }
+}
 
 
 #Need to get the Clustering involved somewhere above...
