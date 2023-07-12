@@ -26,6 +26,11 @@ resource "google_storage_bucket" "private" {
   }
 }
 
+resource "google_storage_bucket_object" "footballdata" {
+  name   = "footballdata"
+  source = "/downloads/football_teams.csv"
+  bucket = "numatf-bucket"
+}
 
 
 # bigquery dataset with sample data which optimises query performance
@@ -42,40 +47,12 @@ resource "google_bigquery_table" "tf_tb" {
     env = "default"
   }
 
-   schema = <<EOF
-[
-  {
-    "name": "permalink",
-    "type": "STRING",
-    "mode": "NULLABLE",
-    "description": "The Permalink"
-  },
-  {
-    "name": "state",
-    "type": "STRING",
-    "mode": "NULLABLE",
-    "description": "State where the head office is located"
-  }
-]
-EOF
-}
-
-
-
-resource "google_bigquery_table" "sheet" {
-  dataset_id = google_bigquery_dataset.tf_ds.dataset_id
-  table_id   = "sheet"
-
-  external_data_configuration {
+ external_data_configuration {   
     autodetect    = true
-    source_format = "GOOGLE_SHEETS"
-
-    google_sheets_options {
-      skip_leading_rows = 1
-    }
+    source_format = "CSV"
 
     source_uris = [
-      "https://docs.google.com/spreadsheets/d/123456789012345",
+      "gs://numatf-bucket/football_teams.csv",
     ]
   }
 }
