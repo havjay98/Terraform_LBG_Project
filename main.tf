@@ -41,7 +41,9 @@ resource "google_bigquery_dataset" "tf_ds" {
 resource "google_bigquery_table" "tf_tb" {
  table_id = "tftb1"	
  dataset_id = google_bigquery_dataset.tf_ds.dataset_id
+ location = "EU"
  deletion_protection = "false" # allows deletion
+ clustering = "Tournament"
 
   labels = {
     env = "default"
