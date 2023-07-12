@@ -15,7 +15,7 @@ provider "google" {
 
 #private google storage bucket with a retention policy
 resource "google_storage_bucket" "private" {
- name = "numatf-bucket"
+ name = "numatf_bucket"
  public_access_prevention = "enforced"  #privatize
  location = "EU" 
  storage_class = "STANDARD"
@@ -29,7 +29,7 @@ resource "google_storage_bucket" "private" {
 resource "google_storage_bucket_object" "footballdata" {
   name   = "footballdata"
   source = "./football_teams.csv"
-  bucket = "numatf-bucket"
+  bucket = "numatf_bucket"
 }
 
 
@@ -58,6 +58,11 @@ external_data_configuration {
 	skip_leading_rows = 1
 }
 
+hive_partitioning_options {    # working on this
+    mode = "AUTO"
+    source_uri_prefix = "gs://numatf_bucket/footballdata"
+    requirePartitionFilter = false
+  }
 
     source_uris = [
       "gs://numatf-bucket/football_teams.csv",
