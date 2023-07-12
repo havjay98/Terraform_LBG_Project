@@ -1,1 +1,98 @@
+[
 
+    {
+
+        "name": "Team",
+
+        "type": "STRING",
+
+        "mode": "NULLABLE"
+
+    },
+
+    {
+
+        "name": "Tournament",
+
+        "type": "String",
+
+        "mode": "NULLABLE"
+
+    },
+
+    {
+
+        "name": "Goals",
+
+        "type": "INT64",
+
+        "mode": "NULLABLE"
+
+    },
+
+    {
+
+        "name": "shots_pg",
+
+        "type": "FLOAT64",
+
+        "mode": "NULLABLE"
+
+    },
+
+   {
+
+        "name": "yellow_cards",
+
+        "type": "INT64",
+
+        "mode": "NULLABLE"
+
+    },
+   {
+
+        "name": "red_cards",
+
+        "type": "INT64",
+
+        "mode": "NULLABLE"
+
+    },
+   {
+
+        "name": "possession%",
+
+        "type": "FLOAT64",
+
+        "mode": "NULLABLE"
+
+    },
+   {
+
+        "name": "pass%",
+
+        "type": "FLOAT64",
+
+        "mode": "NULLABLE"
+
+    },
+   {
+
+        "name": "ariels_won",
+
+        "type": "FLOAT64",
+
+        "mode": "NULLABLE"
+
+    },
+   {
+
+        "name": "rating",
+
+        "type": "FLOAT64",
+
+        "mode": "NULLABLE"
+
+    }
+
+]
