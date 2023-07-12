@@ -61,7 +61,7 @@ external_data_configuration {
      ]
    }
  }
-}
+
 
 #Need to get the Clustering involved somewhere above...
 
