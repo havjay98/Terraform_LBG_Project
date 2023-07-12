@@ -57,13 +57,13 @@ external_data_configuration {
 	quote = "\""
 	skip_leading_rows = 1
 }
+
+
     source_uris = [
       "gs://numatf-bucket/football_teams.csv",
      ]
    }
-clustering {
-   fields = ["Tournament"]
-  }
+
 }
 
 
