@@ -28,7 +28,7 @@ resource "google_storage_bucket" "private" {
 
 resource "google_storage_bucket_object" "footballdata" {
   name   = "footballdata"
-  source = "/downloads/football_teams.csv"
+  source = "./football_teams.csv"
   bucket = "numatf-bucket"
 }
 
@@ -46,7 +46,10 @@ resource "google_bigquery_table" "tf_tb" {
   labels = {
     env = "default"
   }
- external_data_configuration {   
+
+schema = file("schema.json") 
+
+external_data_configuration {   
     autodetect    = true
     source_format = "CSV" 	
  csv_options{
@@ -54,10 +57,10 @@ resource "google_bigquery_table" "tf_tb" {
 	skip_leading_rows = 1
     source_uris = [
       "gs://numatf-bucket/football_teams.csv",
-    ]
-  }
+     ]
+   }
+ }
 }
-
 
 #Need to get the Clustering involved somewhere above...
 
