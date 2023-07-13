@@ -60,7 +60,7 @@ external_data_configuration {
 
 hive_partitioning_options {    # working on this
     mode = "CUSTOM"
-    source_uri_prefix = "gs://numatf_bucket/footballdata.csv"
+    source_uri_prefix = "gs://numatf_bucket/footballdata"
     requirePartitionFilter = false
   }
 
@@ -70,9 +70,6 @@ hive_partitioning_options {    # working on this
    }
 
 }
-
-
-#Need to get the Clustering involved somewhere above...
 
 
 
