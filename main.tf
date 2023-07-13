@@ -53,6 +53,38 @@ labels = {
     env = "default"
   }
 
+    schema = <<EOF
+      [
+        {
+            "name":"seriesid",
+            "type": "INTEGER",
+            "mode": "NULLABLE",
+            "description": "ID number for the show"
+        },
+         {
+            "name":"title",
+            "type": "STRING",
+            "mode": "NULLABLE",
+            "description": "title of the series"
+        },
+         {
+            "name":"genre",
+            "type": "STRING",
+            "mode": "NULLABLE",
+            "description": "genre of the series"
+        },
+         {
+            "name":"timestamp",
+            "type": "TIMESTAMP",
+            "mode": "NULLABLE",
+            "description": "the timestamp"
+        }
+
+ 
+
+      ]
+      EOF
+
 }
 
 resource "google_bigquery_table" "tf_tb" {           #table with sample data
