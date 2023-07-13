@@ -38,8 +38,8 @@ resource "google_bigquery_dataset" "tf_ds" {
  }
 
 
-resource "google_bigquery_table" "tf_empty_tb" {           #empty table with partitioning
- table_id = "tf_empty_tb"	
+resource "google_bigquery_table" "series_empty" {           #empty table with partitioning
+ table_id = "series_empty"	
  dataset_id = google_bigquery_dataset.tf_ds.dataset_id
  deletion_protection = "false" # allows deletion
 
