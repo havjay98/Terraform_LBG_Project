@@ -35,7 +35,14 @@ resource "google_storage_bucket" "private" {
 resource "google_bigquery_dataset" "tf_ds" { 
  dataset_id = "tfds1"
  location = "EU"
- 
+ }
+
+
+resource "google_bigquery_table" "tf_empty_tb" {           #empty table with partitioning
+ table_id = "tf_empty_tb"	
+ dataset_id = google_bigquery_dataset.tf_ds.dataset_id
+ deletion_protection = "false" # allows deletion
+
 time_partitioning {
     type = "DAY"
     field = "timestamp"
@@ -45,17 +52,8 @@ expiration_ms = 100
 labels = {
     env = "default"
   }
+
 }
-
-
-resource "google_bigquery_table" "tf_empty_tb" {           #empty table with partitioning
- table_id = "tf_empty_tb"	
- dataset_id = google_bigquery_dataset.tf_ds.dataset_id
- deletion_protection = "false" # allows deletion
-
-{
-
-
 
 resource "google_bigquery_table" "tf_tb" {           #table with sample data
  table_id = "tftb1"	
