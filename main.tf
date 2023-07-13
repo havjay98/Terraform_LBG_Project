@@ -29,16 +29,6 @@ resource "google_storage_bucket" "private" {
   }
 }
 
-resource "google_storage_bucket_object" "footballdata" {
-  name   = "footballdata.csv"
-  source = "./football_teams.csv"
-  bucket = "numatf_bucket"
-  content_type = "CSV"
-}
-
-
-
-
 
 
 # bigquery dataset with sample data which optimises query performance
