@@ -35,16 +35,32 @@ resource "google_storage_bucket" "private" {
 resource "google_bigquery_dataset" "tf_ds" { 
  dataset_id = "tfds1"
  location = "EU"
- }
+ 
+time_partitioning {
+    type = "DAY"
+  }
 
-resource "google_bigquery_table" "tf_tb" {
+labels = {
+    env = "default"
+  }
+}
+
+
+resource "google_bigquery_table" "tf_empty_tb" {           #empty table with partitioning
+ table_id = "tf_empty_tb"	
+ dataset_id = google_bigquery_dataset.tf_ds.dataset_id
+ deletion_protection = "false" # allows deletion
+
+{
+
+
+
+resource "google_bigquery_table" "tf_tb" {           #table with sample data
  table_id = "tftb1"	
  dataset_id = google_bigquery_dataset.tf_ds.dataset_id
  deletion_protection = "false" # allows deletion
- clustering = [Tournament]
-
-
-  labels = {
+ 
+labels = {
     env = "default"
   }
 
@@ -52,8 +68,10 @@ schema = file("schema.json")
 
 external_data_configuration {   
     autodetect    = true
-    source_format = "GOOGLE_SHEETS" 	
-
+    source_format = "GOOGLE_SHEETS" 
+google_sheets_options {
+    skip_leading_rows = 1
+}
     source_uris = [
       "https://docs.google.com/spreadsheets/d/1WM0X3pTZ58j5ZlxWflGldZHENBx9w52nRI1svr61p84/edit#gid=1121058407",
      ]
