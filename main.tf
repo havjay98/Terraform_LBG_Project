@@ -59,7 +59,7 @@ external_data_configuration {
 	skip_leading_rows = 1
 }
 
-hive_partitioning_options {    # working on this
+hive_partitioning_options {    # reoccuring error with when partitioning external data
     mode = "AUTO"
     source_uri_prefix = "gs://numatf_bucket/footballdata.csv"
     require_partition_filter = false
