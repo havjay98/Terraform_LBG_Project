@@ -59,13 +59,13 @@ external_data_configuration {
 }
 
 hive_partitioning_options {    # working on this
-    mode = "AUTO"
-    source_uri_prefix = "gs://numatf_bucket/footballdata"
+    mode = "CUSTOM"
+    source_uri_prefix = "gs://numatf_bucket/footballdata.csv"
     requirePartitionFilter = false
   }
 
     source_uris = [
-      "gs://numatf-bucket/football_teams.csv",
+      "gs://numatf_bucket/football_teams.csv",
      ]
    }
 
