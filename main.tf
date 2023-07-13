@@ -1,8 +1,8 @@
 #required terraform version
-
 terraform {
     required_version = ">=0.13"
 }
+
 
  
 #provider block
@@ -12,6 +12,9 @@ provider "google" {
  region = "europe-west2"
  zone = "europe-west2a"
   }
+
+
+
 
 #private google storage bucket with a retention policy
 resource "google_storage_bucket" "private" {
@@ -32,6 +35,10 @@ resource "google_storage_bucket_object" "footballdata" {
   bucket = "numatf_bucket"
   content_type = "CSV"
 }
+
+
+
+
 
 
 # bigquery dataset with sample data which optimises query performance
@@ -71,8 +78,6 @@ hive_partitioning_options {    # reoccuring error with when partitioning externa
    }
 
 }
-
-
 
 
 
