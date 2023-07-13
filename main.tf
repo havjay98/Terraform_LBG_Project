@@ -27,9 +27,10 @@ resource "google_storage_bucket" "private" {
 }
 
 resource "google_storage_bucket_object" "footballdata" {
-  name   = "footballdata"
+  name   = "footballdata.csv"
   source = "./football_teams.csv"
   bucket = "numatf_bucket"
+  content_type = "CSV"
 }
 
 
@@ -61,7 +62,7 @@ external_data_configuration {
 hive_partitioning_options {    # working on this
     mode = "CUSTOM"
     source_uri_prefix = "gs://numatf_bucket/footballdata"
-    requirePartitionFilter = false
+    require_partition_filter = false
   }
 
     source_uris = [
