@@ -44,7 +44,7 @@ resource "google_bigquery_table" "tf_empty_tb" {           #empty table with par
  deletion_protection = "false" # allows deletion
 
 time_partitioning {
-    type = "DAY"
+    type = "DAY" #partition the updates 
     field = "timestamp"
 expiration_ms = 100
   }
