@@ -38,6 +38,8 @@ resource "google_bigquery_dataset" "tf_ds" {
  
 time_partitioning {
     type = "DAY"
+    field = "timestamp"
+expiration_ms = 100
   }
 
 labels = {
