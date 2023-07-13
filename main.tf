@@ -51,6 +51,8 @@ resource "google_bigquery_table" "tf_tb" {
  table_id = "tftb1"	
  dataset_id = google_bigquery_dataset.tf_ds.dataset_id
  deletion_protection = "false" # allows deletion
+ clustering = [Tournament]
+
 
   labels = {
     env = "default"
@@ -60,25 +62,14 @@ schema = file("schema.json")
 
 external_data_configuration {   
     autodetect    = true
-    source_format = "CSV" 	
- csv_options{
-	quote = "\""
-	skip_leading_rows = 1
-}
-
-hive_partitioning_options {    # reoccuring error with when partitioning external data
-    mode = "AUTO"
-    source_uri_prefix = "gs://numatf_bucket/footballdata.csv"
-    require_partition_filter = false
-  }
+    source_format = "GOOGLE_SHEETS" 	
 
     source_uris = [
-      "gs://numatf_bucket/football_teams.csv",
+      "https://docs.google.com/spreadsheets/d/1WM0X3pTZ58j5ZlxWflGldZHENBx9w52nRI1svr61p84/edit#gid=1121058407",
      ]
    }
 
 }
-
 
 
 #google notebook instance
