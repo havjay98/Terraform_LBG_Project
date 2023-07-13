@@ -60,7 +60,7 @@
     },
    {
 
-        "name": "possession%",
+        "name": "possession",
 
         "type": "FLOAT64",
 
@@ -69,7 +69,7 @@
     },
    {
 
-        "name": "pass%",
+        "name": "pass",
 
         "type": "FLOAT64",
 
