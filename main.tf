@@ -7,7 +7,7 @@ terraform {
  
 #provider block
 provider "google" {
- credentials = "${file("./key.json")}"  
+ credentials = "${file("./key.json")}"  #currently no available key
  project = "sichuwayproject"
  region = "europe-west2"
  zone = "europe-west2a"
