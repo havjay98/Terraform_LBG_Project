@@ -18,7 +18,7 @@ provider "google" {
 
 #private google storage bucket with a retention policy
 resource "google_storage_bucket" "private" {
- name = "numatf_bucket"
+ name = "jamestf_bucket"
  public_access_prevention = "enforced"  #privatize
  location = "EU" 
  storage_class = "STANDARD"
